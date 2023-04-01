@@ -1,8 +1,11 @@
 import "./app.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import Trivia from "./components/Trivia";
-import { useEffect } from "react";
+import Timer from "./components/Timer";
+
 function App() {
+  const [username, setUsername] = useState(null);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [stop, setStop] = useState(false);
   const [earned, setEarned] = useState("$ 0");
@@ -111,7 +114,9 @@ function App() {
         ) : (
           <>
             <div className="top">
-              <div className="timer">30</div>
+              <div className="timer">
+                <Timer setStop={setStop} questionNumber={questionNumber} />
+              </div>
             </div>
             <div className="bottom">
               <Trivia
